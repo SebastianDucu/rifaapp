@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
+import bcrypt from 'bcryptjs';
+import prisma from './config/database';
 
 import { config } from './config';
 import { errorHandler } from './middlewares/errorHandler';
@@ -110,7 +112,27 @@ app.use(errorHandler);
 
 // ==================== Iniciar servidor ====================
 
+async function initDb() {
+  try {
+    const userCount = await prisma.user.count();
+    if (userCount === 0) {
+      const passwordHash = await bcrypt.hash('salito2021D!', 12);
+      await prisma.user.create({
+        data: {
+          name: 'educuara',
+          email: 'educuara@rifaapp.com',
+          passwordHash,
+        },
+      });
+      console.log('✅ Usuario inicial educuara creado con éxito.');
+    }
+  } catch (err) {
+    console.error('Error al inicializar admin:', err);
+  }
+}
+
 app.listen(config.port, '0.0.0.0', () => {
+  initDb();
   console.log(`
 ╔══════════════════════════════════════════╗
 ║          🎰 RifaApp Backend             ║
