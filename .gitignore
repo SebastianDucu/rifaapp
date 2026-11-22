@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+*.db
+*.db-journal
+uploads/*
+!uploads/.gitkeep
+cache/*
+!cache/.gitkeep
+coverage/
+.DS_Store
+*.log
+cloudflared.exe
+frontend/android/

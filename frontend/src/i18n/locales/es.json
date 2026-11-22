@@ -1,0 +1,107 @@
+{
+  "app": {
+    "name": "RifaApp",
+    "tagline": "Gestiona y publica tus rifas fácilmente"
+  },
+  "nav": {
+    "dashboard": "Mis Rifas",
+    "newRaffle": "Nueva Rifa",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse"
+  },
+  "auth": {
+    "loginTitle": "Iniciar Sesión",
+    "registerTitle": "Crear Cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "name": "Nombre completo",
+    "loginButton": "Entrar",
+    "registerButton": "Registrarse",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "createOne": "Crea una aquí",
+    "loginHere": "Inicia sesión"
+  },
+  "raffle": {
+    "create": "Crear Rifa",
+    "edit": "Editar Rifa",
+    "name": "Nombre de la rifa",
+    "description": "Descripción",
+    "prize": "Premio",
+    "drawDate": "Fecha del sorteo",
+    "pricePerTicket": "Precio por número",
+    "totalTickets": "Cantidad de números",
+    "startNumber": "Número inicial",
+    "paymentInfo": "Datos de pago",
+    "contactInfo": "Contacto",
+    "contactPhone": "Teléfono de contacto",
+    "status": "Estado",
+    "draft": "Borrador",
+    "active": "Activa",
+    "finished": "Finalizada",
+    "duplicate": "Duplicar",
+    "archive": "Archivar",
+    "delete": "Eliminar",
+    "confirmDelete": "¿Estás seguro de eliminar esta rifa? Esta acción no se puede deshacer.",
+    "noRaffles": "Aún no tienes rifas. ¡Crea tu primera rifa!",
+    "draw": "Sortear",
+    "winner": "Ganador"
+  },
+  "ticket": {
+    "available": "Disponible",
+    "reserved": "Apartado",
+    "paid": "Pagado",
+    "buyerName": "Nombre del comprador",
+    "buyerPhone": "Teléfono",
+    "notes": "Notas",
+    "amountPaid": "Monto pagado",
+    "paymentMethod": "Método de pago",
+    "release": "Liberar",
+    "reserve": "Apartar",
+    "markPaid": "Marcar como pagado",
+    "bulkAction": "Acción en lote",
+    "selected": "seleccionados",
+    "selectAll": "Seleccionar todos",
+    "clearSelection": "Limpiar selección"
+  },
+  "image": {
+    "generate": "Generar Imagen",
+    "showNames": "Mostrar nombres",
+    "showOnlyAvailable": "Solo disponibles",
+    "size": "Tamaño",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "square": "Cuadrado (1080×1080)",
+    "story": "Historia (1080×1920)",
+    "a4": "A4",
+    "download": "Descargar PNG",
+    "copy": "Copiar al portapapeles",
+    "share": "Compartir"
+  },
+  "participants": {
+    "title": "Participantes",
+    "export": "Exportar CSV",
+    "import": "Importar CSV",
+    "whatsappMessage": "Mensaje de WhatsApp",
+    "totalToPay": "Total a pagar",
+    "totalPaid": "Total pagado"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "¡Listo!",
+    "confirm": "Confirmar",
+    "search": "Buscar...",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "noData": "Sin datos",
+    "copy": "Copiar",
+    "copied": "¡Copiado!"
+  }
+}
+

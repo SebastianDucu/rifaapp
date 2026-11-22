@@ -1,0 +1,97 @@
+// ============================================
+// RifaApp — Prisma Schema
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  raffles      Raffle[]
+  auditLogs    AuditLog[]
+}
+
+model Raffle {
+  id              String     @id @default(uuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name            String
+  slug            String     @unique
+  description     String     @default("")
+  prize           String
+  prizeImageUrl   String?
+  drawDate        DateTime?
+  pricePerTicket  Float
+  totalTickets    Int
+  startNumber     Int        @default(0)
+  zeroPad         Boolean    @default(true)
+  lotteryMethod   String     @default("random")
+  paymentInfo     String     @default("")
+  contactInfo     String     @default("")
+  contactPhone    String     @default("")
+  primaryColor    String     @default("#3b82f6")
+  logoUrl         String?
+  template        String     @default("default")
+  status          String     @default("DRAFT") // DRAFT, ACTIVE, FINISHED
+  winnerTicketNum Int?
+  winnerName      String?
+  imageStale      Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  tickets         Ticket[]
+  auditLogs       AuditLog[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Ticket {
+  id            String    @id @default(uuid())
+  raffleId      String
+  raffle        Raffle    @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+  number        Int
+  status        String    @default("AVAILABLE") // AVAILABLE, RESERVED, PAID
+  buyerName     String?
+  buyerPhone    String?
+  notes         String?
+  amountPaid    Float?
+  paymentMethod String?
+  paymentDate   DateTime?
+  version       Int       @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([raffleId, number])
+  @@index([raffleId, status])
+  @@index([raffleId, buyerName])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  raffleId   String?
+  raffle     Raffle?  @relation(fields: [raffleId], references: [id], onDelete: SetNull)
+  action     String   // CREATE, UPDATE, DELETE, BULK_UPDATE, DRAW, etc.
+  entityType String   // RAFFLE, TICKET, etc.
+  entityId   String
+  before     String?  // JSON stringified
+  after      String?  // JSON stringified
+  createdAt  DateTime @default(now())
+
+  @@index([raffleId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
