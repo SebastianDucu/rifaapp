@@ -143,14 +143,24 @@ export class RaffleService {
     }
 
     const updated = await prisma.$transaction(async (tx) => {
+      const { drawDate, description, ...rest } = sanitized;
+      const updateData: Record<string, any> = {
+        ...rest,
+        slug,
+        imageStale: true,
+      };
+
+      if (description !== undefined) {
+        updateData.description = description || '';
+      }
+
+      if (drawDate !== undefined) {
+        updateData.drawDate = drawDate ? new Date(drawDate) : null;
+      }
+
       const raffle = await tx.raffle.update({
         where: { id: raffleId },
-        data: {
-          ...sanitized,
-          slug,
-          drawDate: sanitized.drawDate ? new Date(sanitized.drawDate) : existing.drawDate,
-          imageStale: true,
-        },
+        data: updateData,
       });
 
       await tx.auditLog.create({
